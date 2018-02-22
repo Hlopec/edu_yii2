@@ -6,16 +6,21 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Posts */
 
+    if(Yii::$app->user->isGuest){
+        return Yii::$app->getResponse()->redirect(['//site/login']);
+    }else{
 $this->title = 'Create Posts';
 $this->params['breadcrumbs'][] = ['label' => 'Posts', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="posts-create">
+    <div class="posts-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+            <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+            <?= $this->render('_form', [
+                'model' => $model,
+            ]);
+        }
+        ?>
 
-</div>
+    </div>

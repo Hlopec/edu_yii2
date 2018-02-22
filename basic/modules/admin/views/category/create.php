@@ -6,9 +6,13 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Category */
 
-$this->title = 'Create Category';
-$this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+
+    if(Yii::$app->user->isGuest){
+        return Yii::$app->getResponse()->redirect(['//site/login']);
+    }else{
+        $this->title = 'Create Category';
+        $this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['index']];
+        $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-create">
 
@@ -16,6 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
-    ]) ?>
+    ]);
+    }?>
 
 </div>
